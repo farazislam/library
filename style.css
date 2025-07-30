@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#booksRead {
+    width: 680px;
+    display: grid;
+    grid-auto-rows: 50px;
+}
+
+#booksRead .book-row {
+    display: grid;
+    grid-template-columns: 200px 200px 80px 100px 100px 100px 100px;
+}
+
+#booksRead .book-row li {
+    border: 1px solid black;
+    list-style-type: none;
+}
+
+.hidden {
+    display: none !important
+}
