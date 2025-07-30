@@ -7,8 +7,6 @@ const addBookBTN = document.getElementById('addBook')
 // HTML Elements
 const booksRead = document.getElementById('booksRead')
 
-
-
 // The next 7 lines is dummy date
 const book1 = new Book('Dennis Lehane', 'Live By Night', 400, false)
 const book2 = new Book('Dennis Lehane', 'Darkness Take My Hand', 400, false)
@@ -24,19 +22,11 @@ function Book(author, title, pages, readBook) {
     this.title = title;
     this.pages = pages;
     this.readBook = readBook;
-    bookID = crypto.randomUUID();
+    this.bookID = crypto.randomUUID();
+}
 
-    this.showInfo = function () {
-        const bookInfo = {
-            author: author,
-            title: title,
-            pages: pages,
-            readBook: readBook,
-            bookID: bookID
-        };
-
-        return bookInfo;
-    }
+Book.prototype.toggleReadStatus = function () {
+    this.readBook = !this.readBook;
 }
 
 function addBookToLibrary(book) {
@@ -82,15 +72,33 @@ displayBooksBTN.addEventListener('click', (e) => {
         read.append(book.readBook);
 
         const changeReadStatusBTN = document.createElement("BUTTON");
-        changeReadStatusBTN.innerText = 'Change Read Status'
+        changeReadStatusBTN.innerText = 'Change Read Status';
         newUL.append(changeReadStatusBTN);
 
-        const deleteBTN = document.createElement("BUTTON");
-        deleteBTN.innerText = 'Delete';
-        newUL.append(deleteBTN);
+        // When botton is clicked change property of book and the display of all the books
+        changeReadStatusBTN.addEventListener('click', () => {
+            book.toggleReadStatus()
+            read.innerText = book.readBook;
+        })
+
+        const deleteBookBTN = document.createElement("BUTTON");
+        deleteBookBTN.innerText = 'Delete';
+        newUL.append(deleteBookBTN);
+
+        deleteBookBTN.addEventListener('click', () => {
+            newUL.remove();
+            deleteBookFromLibrary(book.bookID)
+        })
     })
 })
 
 addBookBTN.addEventListener('click', () => {
-
 })
+
+function deleteBookFromLibrary(id) {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].bookID === id) {
+            myLibrary.splice(i, (i + 1))
+        }
+    }
+}
