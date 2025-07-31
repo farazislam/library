@@ -83,6 +83,7 @@ displayBooksBTN.addEventListener('click', (e) => {
 
         const deleteBookBTN = document.createElement("BUTTON");
         deleteBookBTN.innerText = 'Delete';
+        deleteBookBTN.classList = 'delete'
         newUL.append(deleteBookBTN);
 
         deleteBookBTN.addEventListener('click', () => {

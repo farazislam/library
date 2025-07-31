@@ -3,22 +3,59 @@
     margin: 0;
 }
 
+body {
+    padding: 20px;
+}
+
 #booksRead {
-    width: 680px;
+    margin-top: 20px;
     display: grid;
-    grid-auto-rows: 50px;
+    grid-auto-rows: 70px;
 }
 
-#booksRead .book-row {
+.book-row {
     display: grid;
-    grid-template-columns: 200px 200px 80px 100px 100px 100px 100px;
+    grid-template-columns: 200px 200px 80px 100px 180px 150px;
+    grid-template-rows: 1fr;
+    align-items: center;
 }
 
-#booksRead .book-row li {
-    border: 1px solid black;
+.column-headings {
+    height: 70px;
+    width: 580px;
+    display: grid;
+    grid-template-columns: 200px 200px 80px 100px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    color: white;
+    background-color: #0153a0;
+}
+
+.book-row li, .column-headings li{
     list-style-type: none;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hidden {
     display: none !important
+}
+
+button {
+    color: white;
+    background-color: #0153a0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.delete {
+    background-color: #de0130;
+}
+
+#booksRead button {
+    margin-left: 10px;
 }
