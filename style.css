@@ -5,10 +5,18 @@
 
 body {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    margin-top: 40px;
 }
 
 #booksRead {
-    margin-top: 20px;
+    margin-top: 40px;
     display: grid;
     grid-auto-rows: 70px;
 }
@@ -16,7 +24,7 @@ body {
 .book-row {
     display: grid;
     grid-template-columns: 200px 200px 80px 100px 180px 150px;
-    grid-template-rows: 1fr;
+    grid-template-rows: 100%;
     align-items: center;
 }
 
@@ -58,4 +66,53 @@ button {
 
 #booksRead button {
     margin-left: 10px;
+}
+
+#dialog-new-book[open] {
+    top: 20%;
+    left: 35%;
+    height: 400px;
+    width: 350px;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+form {
+    margin-top: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+form input {
+    line-height: 20px;
+    width: 100%;
+}
+
+form #pages {
+    width: 50px;
+}
+
+form .checkbox {
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+form #readbook {
+    align-self: left !important;
+    padding-right: 100px;
+}
+
+#form .dialog-buttons {
+    display: flex;
 }

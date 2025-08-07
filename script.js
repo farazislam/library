@@ -3,19 +3,19 @@ const myLibrary = [];
 // Buttons
 const displayBooksBTN = document.getElementById('displayBooks')
 const addBookBTN = document.getElementById('addBook')
+const submitBTN = document.getElementById('submit')
+const closeDialogBTN = document.getElementById('closeDialog')
 
 // HTML Elements
+const dialogNewBook = document.getElementById('dialog-new-book')
 const booksRead = document.getElementById('booksRead')
+const form = document.getElementById('form')
+// HTML Element from dialog box
+const title = document.getElementById('title')
+const author = document.getElementById('author')
+const pages = document.getElementById('pages')
+const readBook = document.getElementById('readBook')
 
-// The next 7 lines is dummy date
-const book1 = new Book('Dennis Lehane', 'Live By Night', 400, false)
-const book2 = new Book('Dennis Lehane', 'Darkness Take My Hand', 400, false)
-const book3 = new Book('Dennis Lehane', 'A Drink Before the War', 400, false)
-const book4 = new Book('Dennis Lehane', 'Sacred', 400, false)
-addBookToLibrary(book1)
-addBookToLibrary(book2)
-addBookToLibrary(book3)
-addBookToLibrary(book4)
 
 function Book(author, title, pages, readBook) {
     this.author = author;
@@ -32,6 +32,16 @@ Book.prototype.toggleReadStatus = function () {
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
+
+function deleteBookFromLibrary(id) {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].bookID === id) {
+            myLibrary.splice(i, (i + 1))
+        }
+    }
+}
+
+////// DISPLAYING ALL OF THE BOOKS DYNAMICALLY
 
 displayBooksBTN.addEventListener('click', (e) => {
     e.preventDefault();
@@ -93,13 +103,30 @@ displayBooksBTN.addEventListener('click', (e) => {
     })
 })
 
+////// ADDING A NEW BOOK
+
 addBookBTN.addEventListener('click', () => {
+    dialogNewBook.showModal();
 })
 
-function deleteBookFromLibrary(id) {
-    for (let i = 0; i < myLibrary.length; i++) {
-        if (myLibrary[i].bookID === id) {
-            myLibrary.splice(i, (i + 1))
-        }
+closeDialogBTN.addEventListener('click', () => {
+    dialogNewBook.close();
+})
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // If the books are currently displayed then hide it. Then when it is displayed,
+    // it will have the latest books
+    if(booksRead.classList.contains('hidden')) {
+
+    } else {
+        booksRead.classList.add('hidden')
     }
-}
+
+    const newBook = new Book(author.value, title.value, pages.value, readBook.checked)
+    addBookToLibrary(newBook);
+    
+    dialogNewBook.close();
+})
+

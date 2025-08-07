@@ -10,8 +10,35 @@
 </head>
 
 <body>
-    <button id="displayBooks">Display Books</button>
-    <button id="addBook">Add New Book</button>
+    <h1>Reading List</h1>
+    <div class="buttons"><button id="displayBooks">Display Books</button>
+        <button id="addBook">Add New Book</button>
+    </div>
+
+    <dialog id="dialog-new-book">
+        <h3>Enter new book details:</h3>
+        <form id="form">
+            <label for="title">Book Title</label>
+            <input type="text" name="title" id='title' required>
+
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required>
+
+            <label for="pages">Number of pages</label>
+            <input type="number" min='1' name="pages" id="pages" required>
+
+            <div class="checkbox">
+                <label for="readBook">Tick if you have you read the book</label>
+                <input type="checkbox" id="readBook">
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" id="submit">Submit</button>
+                <button formmethod='dialog' id="closeDialog">Close</button>
+            </div>
+        </form>
+    </dialog>
+
     <div id="booksRead" class="hidden">
         <ul class="column-headings book-heading">
             <li>Title</li>
